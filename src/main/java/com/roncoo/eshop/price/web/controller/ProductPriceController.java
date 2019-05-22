@@ -14,7 +14,8 @@ public class ProductPriceController {
 
 	@Autowired
 	private ProductPriceService productPriceService;
-	
+
+	//http://192.168.56.102:8763/product-price/add?value=222&id=1&productId=2
 	@RequestMapping("/add") 
 	@ResponseBody
 	public String add(ProductPrice productPrice) {
@@ -58,6 +59,17 @@ public class ProductPriceController {
 			return productPriceService.findById(id);
 		} catch (Exception e) {
 			e.printStackTrace(); 
+		}
+		return new ProductPrice();
+	}
+
+	@RequestMapping("/findByProductId")
+	@ResponseBody
+	public ProductPrice findByProductId(Long productId){
+		try {
+			return productPriceService.findByProductId(productId);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return new ProductPrice();
 	}
